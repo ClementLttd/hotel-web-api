@@ -58,22 +58,22 @@ public class Startup {
 			List<Client> clients = new ArrayList<Client>();
 			clients.add(new Client("Pierre", "Jean"));
 			clients.add(new Client("Pierre", "Dimitri"));
-			clients.add(new Client("Albert", "Dimitri"));
-			clients.add(new Client("Durand", "Martin"));
+			clients.add(new Client("Pierre", "Benoist"));
+			clients.add(new Client("Bernard", "Durand"));
 
 			this.clientRepository.saveAll(clients);
 
 		}
 		if (this.hotelRepository.count() == 0) {
 			List<Hotel> hotels = new ArrayList<>();
-			hotels.add(new Hotel("Ritz", 4));
-			hotels.add(new Hotel("Formule1", 1));
+			hotels.add(new Hotel("Pullman", 4));
+			hotels.add(new Hotel("Ibis", 2));
 			this.hotelRepository.saveAll(hotels);
 		}
 		if (this.chambreRepository.count() == 0) {
-			Hotel h1 = this.hotelRepository.findByNom("Ritz")
+			Hotel h1 = this.hotelRepository.findByNom("Pullman")
 					.orElseThrow(() -> new EntityNotFoundException("hotel non trouvé"));
-			Hotel h2 = this.hotelRepository.findByNom("Formule1")
+			Hotel h2 = this.hotelRepository.findByNom("Ibis")
 					.orElseThrow(() -> new EntityNotFoundException("hotel non trouvé"));
 			List<Chambre> chambres = new ArrayList<>();
 			chambres.add(new Chambre("1", 20.0F, h1));
@@ -85,7 +85,7 @@ public class Startup {
 		}
 
 		if (this.reservationRepository.count() == 0) {
-			Client c1 = this.clientRepository.findByPrenoms("jean")
+			Client c1 = this.clientRepository.findByPrenoms("Jean")
 					.orElseThrow(() -> new EntityNotFoundException("client non trouvé"));
 			List<Chambre> chambres = this.chambreRepository.findAll();
 			List<Reservation> reservations = new ArrayList<>();
